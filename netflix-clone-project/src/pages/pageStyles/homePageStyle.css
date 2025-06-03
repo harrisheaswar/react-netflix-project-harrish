@@ -1,0 +1,36 @@
+.homeContainer {
+  padding-left: 50px;
+  margin-top: 50dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 10dvh;
+}
+
+@media screen and (max-width: 1280px) {
+  .homeContainer {
+    padding-left: 50px;
+    margin-top: 30dvh;
+    gap: 8dvh;
+  }
+}
+@media screen and (max-width: 1080px) {
+  .homeContainer {
+    padding-left: 50px;
+    margin-top: 20dvh;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .homeContainer {
+    padding-left: 20px;
+    margin-top: 15dvh;
+    gap: 6dvh;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .homeContainer {
+    margin-top: 8dvh;
+    gap: 6dvh;
+  }
+}

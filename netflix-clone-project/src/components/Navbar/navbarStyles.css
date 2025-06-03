@@ -1,0 +1,123 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  justify-content: space-between;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0rem 2.8rem;
+  z-index: 10000;
+  transition: all 0.3s ease;
+}
+.container.scrollActive {
+  background-color: rgba(0, 0, 0, 0.616);
+}
+
+.leftSubContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.optionTabs {
+  color: #e5e5e5;
+  text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.optionTabs:hover {
+  color: white;
+}
+.rightSubContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.searchMainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchBarContainer {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease; /* Add easing for smoother transition */
+  background-color: black;
+  border: 1px solid white;
+  max-width: 0;
+  opacity: 0;
+}
+.searchBarContainer.active {
+  max-width: 200px;
+  opacity: 1;
+  padding: 2px 5px;
+}
+
+.searchButton {
+  background: none;
+  border: none;
+  display: flex;
+  padding: "10rem 0";
+}
+
+.searchInput {
+  position: "absolute";
+  left: 2.5rem;
+  background-color: black;
+  border: none;
+  outline: none;
+  color: white;
+  opacity: 0;
+  font-size: 12px;
+  width: 0%;
+}
+
+.searchInput.active {
+  opacity: 1;
+  width: 100%;
+}
+
+.profileIcon {
+  height: auto;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}
+
+.chevronIconCustom {
+  font-size: 8px;
+  color: white;
+  margin-top: 5px;
+  transition: all 0.5s ease;
+}
+
+.chevronIconCustom.active {
+  transform: rotate(180deg);
+}
+
+@media screen and (max-width: 1090px) {
+  .container {
+    padding: 0 2rem;
+  }
+  .optionTabs {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 895px) {
+  .container {
+    padding: 0 1rem;
+  }
+  .optionTabs {
+    font-size: 10px;
+  }
+}

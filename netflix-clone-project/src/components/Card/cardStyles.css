@@ -1,0 +1,21 @@
+.cardContainer {
+  cursor: pointer;
+  color: white;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 300px;
+  flex-shrink: 0;
+}
+
+@media screen and (max-width: 1280px) {
+  .cardContainer {
+    width: 200px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cardContainer {
+    width: 150px;
+  }
+}

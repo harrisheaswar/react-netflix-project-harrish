@@ -1,0 +1,53 @@
+.navbarDropdown {
+  opacity: 0;
+  transform: translateY(-20px);
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease,
+    visibility 0.3s ease;
+  position: absolute;
+  left: 10px;
+  top: 65px;
+  width: 0px;
+  height: 0px;
+  pointer-events: none;
+}
+
+.navbarDropdown.browse {
+  opacity: 1;
+  transform: translateY(0);
+  width: 200px;
+  height: auto;
+  visibility: visible;
+  background-color: black;
+  border: 1px solid hsla(0, 0%, 100%, 0.15);
+  border-top: 2px solid white;
+  z-index: 9999;
+  padding: 20px;
+  pointer-events: auto;
+}
+
+.dropdownArrows {
+  transform: rotate(180deg);
+  color: white;
+  position: absolute;
+  font-size: 10px;
+  top: -12px;
+  left: 48%;
+  opacity: 0;
+  z-index: 9999;
+}
+
+.navDropdownContent {
+  display: flex;
+  gap: 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+}
+.navbarDropdown.browse .navDropdownContent {
+  opacity: 1;
+}
+.navbarDropdown.browse .dropdownArrows {
+  opacity: 1;
+}

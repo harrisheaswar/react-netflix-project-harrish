@@ -1,0 +1,67 @@
+.carouselContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.itemContainer {
+  flex-shrink: 0;
+  display: flex;
+  gap: 15px;
+  overflow-x: auto; /* auto instead of scroll */
+  overflow-y: hidden; /* ensure vertical scrollbar doesn't appear */
+  white-space: nowrap;
+  width: 100%; /* ensure it doesn't overflow its parent */
+  scroll-behavior: smooth;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.scrollButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50.5%);
+  background-color: rgba(0, 0, 0, 0.712);
+  border: none;
+  height: 100%;
+  padding: 10px;
+  cursor: pointer;
+
+  z-index: 1; /* Optional: ensures it stays above content */
+}
+
+.scrollButton.left {
+  left: 0;
+}
+.scrollButton.right {
+  right: 0;
+}
+
+.genreTitle {
+  color: white;
+  font-size: 1.4vw;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 1080px) {
+  .genreTitle {
+    color: white;
+    font-size: 2vw;
+    margin-bottom: 8px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .genreTitle {
+    color: white;
+    font-size: 3vw;
+    margin-bottom: 8px;
+  }
+}

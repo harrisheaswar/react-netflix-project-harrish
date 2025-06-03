@@ -1,0 +1,182 @@
+.heroContainer {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  z-index: 1;
+}
+
+.heroVideoBackdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+      to top,
+      rgba(20, 20, 20, 500) 15%,
+      transparent 60%
+    ),
+    linear-gradient(to bottom, rgba(20, 20, 20, 1) 0.01%, transparent 40%);
+  z-index: 0;
+}
+
+.heroTitleContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.heroTitle {
+  font-size: 80px;
+  color: white;
+  font-weight: bold;
+  margin: 0px;
+  line-height: 90px;
+}
+
+.heroDescription {
+  color: white;
+  font-size: 18px;
+  width: 40%;
+  margin: 0px;
+  font-weight: 500;
+  font-family: sans-serif;
+}
+.playAndInfo {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+.customButtonStyle {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.customButtonStyle.info {
+  background-color: #726969a1;
+  color: white;
+}
+.customButtonStyle.info:hover {
+  background-color: #72696969;
+  color: white;
+}
+.volumeButtonStyle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.volumeButtonStyle:hover {
+  background-color: rgba(128, 128, 128, 0.397);
+}
+.ageWarning {
+  width: 120px;
+  height: 50px;
+  background-color: rgba(128, 128, 128, 0.459);
+  border-left: 3px solid white;
+  color: white;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+@media screen and (max-width: 1280px) {
+  .heroContainer {
+    margin-top: 10dvh;
+  }
+  .heroTitleContainer {
+    gap: 5px;
+  }
+  .heroTitle {
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+    margin: 0px;
+    line-height: 50px;
+  }
+  .heroDescription {
+    color: white;
+    font-size: 13px;
+    width: 40%;
+    margin: 0px;
+    font-weight: 500;
+    font-family: sans-serif;
+  }
+  .playAndInfo {
+    height: 40px;
+  }
+  .customButtonStyle {
+    font-size: 12px;
+    padding: 0px 15px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  .volumeButtonStyle {
+    width: 40px;
+    height: 40px;
+  }
+  .ageWarning {
+    height: 40px;
+    font-size: 13px;
+    width: 80px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  heroContainer {
+    margin-top: 5dvh;
+  }
+  .heroTitleContainer {
+    gap: 2px;
+  }
+  .heroTitle {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .heroDescription {
+    color: white;
+    font-size: 9px;
+    width: 40%;
+    margin: 0px;
+    font-weight: 500;
+    font-family: sans-serif;
+  }
+  .playAndInfo {
+    height: 30px;
+  }
+  .customButtonStyle {
+    font-size: 9px;
+    padding: 0px 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  .volumeButtonStyle {
+    width: 25px;
+    height: 25px;
+  }
+  .ageWarning {
+    height: 25px;
+    font-size: 9px;
+    width: 80px;
+  }
+}
