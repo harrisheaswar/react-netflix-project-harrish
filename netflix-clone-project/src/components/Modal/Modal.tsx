@@ -13,6 +13,7 @@ import "./modalStyles.css";
 import { useUtilsContext } from "@/context/UtilsContext";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import { tmdbApi } from "@/tmdbApi";
+import SimilarMovieCard from "../SimilarMovieCard/SimilarMovieCard";
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -56,6 +57,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, movieData }) => {
         setSimilarMovies([]);
       } else if (similarMoviesResponse.data) {
         setSimilarMovies(similarMoviesResponse?.data?.results);
+        console.log(similarMoviesResponse?.data?.results);
       }
     };
     fetchData();
@@ -305,12 +307,25 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, movieData }) => {
                 </div>
               </div>
             </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+              }}
+            >
               <h2>More Like This</h2>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "10px",
+                  justifyContent: "space-between",
+                }}
+              >
                 {similarMovies &&
                   similarMovies.map((movie) => (
-                    <div style={{ width: "30%", height: "auto" }}></div>
+                    <SimilarMovieCard movieDetails={movie} />
                   ))}
               </div>
             </div>
@@ -344,9 +359,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, movieData }) => {
                 alignItems: "center",
                 justifyContent: "center",
               }}
-            >
-              Video Not Available
-            </div>
+            ></div>
           )}
         </div>
       </div>

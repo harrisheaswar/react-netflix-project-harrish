@@ -12,6 +12,7 @@
 
 .modalContainer {
   height: 90dvh;
+  overflow-y: auto;
   overflow-x: hidden;
   width: 48%;
   background-color: #141414;
@@ -30,7 +31,7 @@
   display: flex;
   flex-direction: column;
   gap: 60px;
-  padding-left: 20px;
+  padding-left: 40px;
 }
 .modalVideoBackdrop {
   position: absolute;
@@ -43,7 +44,7 @@
   z-index: 3;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1280px) {
   .modalContainer {
     width: 90%;
   }

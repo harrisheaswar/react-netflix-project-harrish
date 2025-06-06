@@ -1,6 +1,6 @@
 import { useMovieContext } from "@/context/MovieContext";
 import "./heroStyles.css";
-import { Info, Play, Volume2, VolumeOff, VolumeX } from "lucide-react";
+import { Info, Play, Volume2, VolumeOff } from "lucide-react";
 import type { FC } from "react";
 interface HeroProps {
   setIsMuted?: () => void;

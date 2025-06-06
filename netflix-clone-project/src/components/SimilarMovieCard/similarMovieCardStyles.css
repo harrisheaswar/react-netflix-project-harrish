@@ -1,0 +1,64 @@
+.similarMovieCard {
+  width: 30%;
+  min-width: 250px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #2f2f2f;
+  gap: 20px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.similarMovieImageContainer {
+  position: relative;
+  height: 150px;
+  width: 100%;
+}
+.similarMoviesPlayButton {
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 5px 5px 2px 5px;
+  background-color: rgba(128, 128, 128, 0.479);
+}
+.playButtonOnHover {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  transition: all 0.3s ease;
+}
+
+.similarMovieTitle {
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  left: 10px;
+  margin-bottom: 0px;
+}
+.similarMovieMisc {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 10px;
+}
+
+.similarMovieFavButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+
+.extraText {
+  border: 1px solid white;
+  padding: 1px 1px 1px 2px;
+  align-self: center;
+}
