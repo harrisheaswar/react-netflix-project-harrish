@@ -1,6 +1,6 @@
 import type { Movie } from "@/types/types";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useRef, type FC } from "react";
+import { useRef, useState, type FC } from "react";
 import Card from "../Card/Card";
 import "./carousalStyles.css";
 
@@ -11,9 +11,10 @@ interface CarouselProps {
 
 const Carousel: FC<CarouselProps> = ({ items, title }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
-
+  const [scrollVisible, setScrollVisible] = useState<number>(0);
   const scrollBy = (distance: number) => {
     if (scrollRef.current) {
+      setScrollVisible((prev: number) => prev + distance);
       scrollRef.current.scrollBy({ left: distance, behavior: "smooth" });
     }
   };
@@ -26,9 +27,11 @@ const Carousel: FC<CarouselProps> = ({ items, title }) => {
             <Card item={item} />
           ))}
         </div>
-        <button className="scrollButton left" onClick={() => scrollBy(-1000)}>
-          <ChevronLeft size={30} color="white" />
-        </button>
+        {scrollVisible !== 0 && (
+          <button className="scrollButton left" onClick={() => scrollBy(-1000)}>
+            <ChevronLeft size={30} color="white" />
+          </button>
+        )}
         <button className="scrollButton right" onClick={() => scrollBy(1000)}>
           <ChevronRight size={30} color="white" />
         </button>

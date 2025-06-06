@@ -1,8 +1,14 @@
 import { useMovieContext } from "@/context/MovieContext";
-import React from "react";
 import "./heroStyles.css";
-import { Info, Play, Volume2 } from "lucide-react";
-const Hero = ({ selectedMovie }) => {
+import { Info, Play, Volume2, VolumeOff, VolumeX } from "lucide-react";
+import type { FC } from "react";
+interface HeroProps {
+  setIsMuted?: () => void;
+  isMuted?: boolean;
+}
+
+const Hero: FC<HeroProps> = ({ setIsMuted, isMuted }) => {
+  const { selectedMovie, setModalOpen } = useMovieContext();
   const formatTitle = (title: string) => {
     if (title && title.length > 18) {
       const breakIndex = title.indexOf(" ", 15);
@@ -17,6 +23,7 @@ const Hero = ({ selectedMovie }) => {
     }
     return title;
   };
+
   return (
     <>
       <div className="heroContainer">
@@ -40,14 +47,20 @@ const Hero = ({ selectedMovie }) => {
                   <Play size={20} />
                   <span>Play</span>
                 </button>
-                <button className="customButtonStyle info">
+                <button
+                  className="customButtonStyle info"
+                  onClick={() => setModalOpen(true)}
+                >
                   <Info />
                   <span>Info</span>
                 </button>
               </div>
               <div style={{ display: "flex", gap: "20px" }}>
-                <button className="volumeButtonStyle">
-                  <Volume2 size={20} />
+                <button
+                  onClick={() => setIsMuted()}
+                  className="volumeButtonStyle"
+                >
+                  {!isMuted ? <Volume2 size={20} /> : <VolumeOff size={20} />}
                 </button>
                 <div className="ageWarning">
                   <span>18+</span>

@@ -16,6 +16,10 @@ interface MovieContextType {
   setTopRatedMovies: (movies: Movie[] | null) => void;
   trendingMovies: Movie[] | null;
   setTrendingMovies: (movies: Movie[] | null) => void;
+  trailerUrl: string;
+  setTrailerUrl: (url: string) => void;
+  isModalOpen: boolean;
+  setModalOpen: (modal: boolean) => void;
 }
 
 const MovieContext = createContext<MovieContextType | undefined>(undefined);
@@ -25,7 +29,8 @@ export const MovieProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [popularMovies, setPopularMovies] = useState<Movie[] | null>(null);
   const [topRatedMovies, setTopRatedMovies] = useState<Movie[] | null>(null);
   const [trendingMovies, setTrendingMovies] = useState<Movie[] | null>(null);
-
+  const [trailerUrl, setTrailerUrl] = useState<string>("");
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
   return (
     <MovieContext.Provider
       value={{
@@ -37,6 +42,10 @@ export const MovieProvider: FC<{ children: ReactNode }> = ({ children }) => {
         setTopRatedMovies,
         trendingMovies,
         setTrendingMovies,
+        trailerUrl,
+        setTrailerUrl,
+        isModalOpen,
+        setModalOpen,
       }}
     >
       {children}

@@ -1,0 +1,29 @@
+.container-pip {
+  position: relative;
+  padding-top: 13%; /* 16:9 aspect ratio */
+  height: 190px;
+  transform: scale(1.8);
+}
+
+.container-watch {
+  height: 100vh;
+}
+
+.container-default {
+  position: absolute;
+  padding-top: 56.25%;
+  transform: scale(1.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  object-fit: cover;
+}
+
+@media screen and(max-width:600px) {
+  .container-pip {
+    /* 16:9 aspect ratio */
+    height: 190px;
+    transform: scale(2);
+  }
+}

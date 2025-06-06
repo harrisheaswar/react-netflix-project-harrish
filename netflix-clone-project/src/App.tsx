@@ -6,13 +6,21 @@ import Watch from "./pages/Watch";
 import MyLists from "./pages/MyLists";
 import Search from "./pages/Search";
 import NotFound from "./pages/NotFound";
-import { MovieProvider } from "./context/MovieContext";
+import { MovieProvider, useMovieContext } from "./context/MovieContext";
+import { CardProvider, useCardContext } from "./context/CardContext";
+import PopUpCard from "./components/PopUpCard/PopUpCard";
+import { UtilsProvider } from "./context/UtilsContext";
+import Modal from "./components/Modal/Modal";
 const App: FC = () => {
   return (
     <MovieProvider>
-      <Router>
-        <MainContent />
-      </Router>
+      <CardProvider>
+        <UtilsProvider>
+          <Router>
+            <MainContent />
+          </Router>
+        </UtilsProvider>
+      </CardProvider>
     </MovieProvider>
   );
 };
@@ -20,9 +28,25 @@ const App: FC = () => {
 export default App;
 
 const MainContent: FC = () => {
+  const { cardState } = useCardContext();
+  const { selectedMovie, isModalOpen, setModalOpen } = useMovieContext();
+  const handleModal = () => {
+    setModalOpen(false);
+  };
   return (
     <>
       <Navbar />
+      <PopUpCard
+        isHovered={cardState.isHovered}
+        x={cardState?.position?.x || 0}
+        y={cardState?.position?.y || 0}
+      />
+
+      <Modal
+        movieData={selectedMovie}
+        isOpen={isModalOpen}
+        onClose={handleModal}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/watch" element={<Watch />} />

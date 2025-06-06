@@ -1,0 +1,52 @@
+.popupContainer {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.popupContentContainer {
+  position: relative;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.popUpVolumeStyle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.644);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.popUpVolumeStyle:hover {
+  background-color: rgba(128, 128, 128, 0.397);
+}
+
+.popUpVolumeStyle.otherButtons {
+  width: 50px;
+  height: 50px;
+  color: white;
+}
+
+.popUpVolumeStyle.otherButtons:hover {
+  border: 1px solid rgb(255, 255, 255);
+}
+
+@media screen and (max-width: 900px) {
+  .popupContentContainer {
+    width: 350px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .popupContentContainer {
+    width: 300px;
+  }
+}

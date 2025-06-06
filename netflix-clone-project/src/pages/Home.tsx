@@ -6,10 +6,12 @@ import type { GenreWithMovie } from "@/types/types";
 import "../components/Hero/heroStyles.css";
 import { useEffect, useState, type FC } from "react";
 import "./pageStyles/homePageStyle.css";
+import VideoPlayer from "@/components/VideoPlayer/VideoPlayer";
 const Home: FC = () => {
   const [genresWithMovies, setGenresWithMovies] = useState<
     GenreWithMovie[] | null
   >(null);
+  const [isMuted, setIsMuted] = useState<boolean>(true);
   const {
     popularMovies,
     selectedMovie,
@@ -19,6 +21,8 @@ const Home: FC = () => {
     topRatedMovies,
     trendingMovies,
     setTrendingMovies,
+    trailerUrl,
+    setTrailerUrl,
   } = useMovieContext();
 
   useEffect(() => {
@@ -63,7 +67,12 @@ const Home: FC = () => {
 
         const randomMovie = popularMoviesResult.data?.results[randomIndex];
         setSelectedMovie(randomMovie);
-        console.log(randomMovie);
+        const trailerRes = await tmdbApi.getMovieTrailer(randomMovie.id);
+        if (trailerRes.error) {
+          setTrailerUrl("");
+        } else {
+          setTrailerUrl(trailerRes?.data.results[0].key);
+        }
       }
 
       if (topRatedMoviesResult.error) {
@@ -84,7 +93,10 @@ const Home: FC = () => {
   return (
     <>
       <div className="homeContainer">
-        <Hero selectedMovie={selectedMovie} />
+        <Hero
+          setIsMuted={() => setIsMuted((prev) => !prev)}
+          isMuted={isMuted}
+        />
         <div
           style={{
             position: "relative",
@@ -109,7 +121,14 @@ const Home: FC = () => {
             ))}
         </div>
       </div>
-      <div style={{ position: "absolute", top: 0, zIndex: 0 }}>
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          zIndex: 0,
+          overflow: "hidden",
+        }}
+      >
         {selectedMovie && (
           <img
             src={`https://image.tmdb.org/t/p/original/${selectedMovie?.backdrop_path}`}
@@ -118,6 +137,13 @@ const Home: FC = () => {
           />
         )}
         <div className="heroVideoBackdrop"></div>
+        {trailerUrl && (
+          <VideoPlayer
+            videoId={trailerUrl}
+            customHeight="0"
+            isMuted={isMuted}
+          />
+        )}
       </div>
     </>
   );

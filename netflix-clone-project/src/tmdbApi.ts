@@ -1,5 +1,5 @@
 import axios, { type AxiosRequestConfig } from "axios";
-import type { Genre, Movie } from "./types/types";
+import type { Genre, Movie, MovieDetails, Trailer } from "./types/types";
 const BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -55,5 +55,13 @@ export const tmdbApi = {
   getMoviesByGenre: (genreId: number, page: number = 1) =>
     get<{ results: Movie[] }>(`discover/movie`, {
       params: { with_genres: genreId, page },
+    }),
+  getMovieTrailer: (movieId: number) =>
+    get<{ results: Trailer[] }>(`/movie/${movieId}/videos`),
+
+  getMovieDetails: (movieId: number) => get<MovieDetails>(`/movie/${movieId}`),
+  getSimilarMovies: (movieId: number) =>
+    get<{ results: Movie[] }>(`/movie/${movieId}/similar`, {
+      params: { page: 1 },
     }),
 };
