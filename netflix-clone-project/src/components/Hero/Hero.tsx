@@ -2,13 +2,16 @@ import { useMovieContext } from "@/context/MovieContext";
 import "./heroStyles.css";
 import { Info, Play, Volume2, VolumeOff } from "lucide-react";
 import type { FC } from "react";
+import { useNavigate } from "react-router-dom";
 interface HeroProps {
   setIsMuted?: () => void;
   isMuted?: boolean;
 }
 
 const Hero: FC<HeroProps> = ({ setIsMuted, isMuted }) => {
-  const { selectedMovie, setModalOpen } = useMovieContext();
+  const { heroTrailer, setSelectedMovie, setModalOpen, trailerUrl } =
+    useMovieContext();
+  const navigate = useNavigate();
   const formatTitle = (title: string) => {
     if (title && title.length > 18) {
       const breakIndex = title.indexOf(" ", 15);
@@ -29,27 +32,33 @@ const Hero: FC<HeroProps> = ({ setIsMuted, isMuted }) => {
       <div className="heroContainer">
         {/* Video Player */}
 
-        {selectedMovie && (
+        {heroTrailer && (
           <div className="heroTitleContainer">
             <h1 className="heroTitle">
-              {selectedMovie?.title?.length > 30 && window.innerWidth < 765
-                ? selectedMovie.title?.substring(0, 30) + "..."
-                : formatTitle(selectedMovie.title)}
+              {heroTrailer?.title?.length > 30 && window.innerWidth < 765
+                ? heroTrailer.title?.substring(0, 30) + "..."
+                : formatTitle(heroTrailer.title)}
             </h1>
             <p className="heroDescription">
-              {selectedMovie?.overview?.length > 30 && window.innerWidth < 600
-                ? selectedMovie.overview?.substring(0, 100) + "..."
-                : selectedMovie.overview?.substring(0, 200) + "..."}
+              {heroTrailer?.overview?.length > 30 && window.innerWidth < 600
+                ? heroTrailer.overview?.substring(0, 100) + "..."
+                : heroTrailer.overview?.substring(0, 200) + "..."}
             </p>
             <div className="playAndInfo">
               <div style={{ display: "flex", gap: "20px" }}>
-                <button className="customButtonStyle">
+                <button
+                  className="customButtonStyle"
+                  onClick={() => navigate(`/watch/${trailerUrl}`)}
+                >
                   <Play size={20} />
                   <span>Play</span>
                 </button>
                 <button
                   className="customButtonStyle info"
-                  onClick={() => setModalOpen(true)}
+                  onClick={() => {
+                    setModalOpen(true);
+                    setSelectedMovie(heroTrailer);
+                  }}
                 >
                   <Info />
                   <span>Info</span>

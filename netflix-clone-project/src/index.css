@@ -6,6 +6,16 @@ body {
   overflow-x: hidden;
   background-color: #141414;
 }
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  overflow: auto;
+}
+
+/* For WebKit-based browsers (Chrome, Safari) */
+body::-webkit-scrollbar {
+  display: none;
+}
 
 #root {
   height: auto;

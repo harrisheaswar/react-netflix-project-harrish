@@ -31,21 +31,241 @@
   display: flex;
   flex-direction: column;
   gap: 60px;
-  padding-left: 40px;
+  padding-left: 50px;
+}
+
+.modalCloseButton {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  background-color: #141414;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  pointer-events: auto;
+  z-index: 5;
+  cursor: pointer;
+}
+.modalTitle {
+  font-size: 3vw;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.modalPlayContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: auto;
+}
+.modalButtonSet {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.modalPlayButton {
+  display: flex;
+  font-size: 20px;
+  background-color: white;
+  color: black;
+  align-items: center;
+  padding: 12px 40px;
+  border-radius: 5px;
+  border: none;
+  font-weight: 500;
+  gap: 10px;
+  cursor: pointer;
+}
+.modalPlayButton:hover {
+  background-color: rgba(255, 255, 255, 0.897);
+  transition: all 0.3s ease;
+}
+.modalOtherButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  padding: 12px 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.modalOtherButtons:hover {
+  background-color: rgba(255, 255, 255, 0.404);
+}
+.modalMovieDetailsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 14px;
+  color: gray;
+  font-weight: 600;
+}
+
+.modalDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.durationDetails {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pegiDetails {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: 600;
+  color: lightGray;
+}
+.pegiStyleDetails {
+  border: 1px solid gray;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1px 1px 1px 3px;
+  margin: 0px 0px;
+}
+.languageDetails {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 10px;
+}
+
+.similarMoviesMainContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.similarMoviesDetails {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  gap: 10px;
+  justify-content: space-evenly;
+}
+.modalVideoContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 65%;
+  width: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+.modalNoVideoPreview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  z-index: 0;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .modalVideoBackdrop {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    to bottom,
-    rgba(20, 20, 20, 10) 0.01%,
-    transparent 10%
+    to top,
+    rgba(20, 20, 20, 100) 10%,
+    transparent 15%
   );
   z-index: 3;
 }
-
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 3000px) {
   .modalContainer {
-    width: 90%;
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 1880px) {
+  .modalContainer {
+    width: 50%;
+  }
+  .playContainer {
+    margin-top: 30dvh;
+
+    padding-left: 50px;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .modalContainer {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 1080px) {
+  .modalContainer {
+    width: 80%;
+  }
+  .similarMoviesDetails {
+    justify-content: space-around;
+  }
+  .playContainer {
+    padding-left: 45px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .modalTitle {
+    font-size: 30px;
+  }
+  .playContainer {
+    padding-left: 30px;
+    margin-top: 20dvh;
+  }
+  .modalVideoBackdrop {
+    background: linear-gradient(
+      to top,
+      rgba(20, 20, 20, 100) 1%,
+      transparent 40%
+    );
+  }
+}
+@media screen and (max-width: 800px) {
+  .modalContainer {
+    width: 80%;
+  }
+  .similarMoviesDetails {
+    gap: 5px;
+    justify-content: space-evenly;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .modalContainer {
+    width: 95%;
+  }
+}
+@media screen and (max-width: 599px) {
+  .playContainer {
+    padding-left: 15px;
+  }
+  .modalButtonSet {
+    gap: 5px;
+  }
+  .modalMovieDetailsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 12px;
+    color: gray;
+    font-weight: 600;
+  }
+}
+@media screen and (max-width: 500px) {
+  .modalMovieDetailsContainer {
+    font-size: 11.5px;
   }
 }

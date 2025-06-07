@@ -11,6 +11,7 @@ import { useCardContext } from "./CardContext";
 interface UtilsContextType {
   addToFavoriteList: (movie: Movie) => void;
   movieList: Movie[];
+  randomDuration: () => string;
 }
 
 const UtilsContext = createContext<UtilsContextType | null>(null);
@@ -55,8 +56,18 @@ export const UtilsProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
   };
 
+  const randomDuration = () => {
+    const randomMins = Math.floor(Math.random() * (200 - 70 + 1)) + 70;
+    const hrs = Math.floor(randomMins / 60);
+    const mins = Math.floor(randomMins % 60);
+
+    return `${hrs}h ${mins}mins`;
+  };
+
   return (
-    <UtilsContext.Provider value={{ addToFavoriteList, movieList }}>
+    <UtilsContext.Provider
+      value={{ addToFavoriteList, movieList, randomDuration }}
+    >
       {children}
     </UtilsContext.Provider>
   );

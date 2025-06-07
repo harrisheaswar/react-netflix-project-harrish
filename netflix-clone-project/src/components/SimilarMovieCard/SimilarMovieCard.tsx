@@ -5,11 +5,13 @@ import { Check, Play, Plus } from "lucide-react";
 import { useEffect, useState, type FC } from "react";
 import { useNavigate } from "react-router-dom";
 import "./similarMovieCardStyles.css";
+import { tmdbApi } from "@/tmdbApi";
 interface SimilarMovieCard {
   movieDetails?: MovieDetails;
+  duration?: string;
 }
 
-const SimilarMovieCard: FC<SimilarMovieCard> = ({ movieDetails }) => {
+const SimilarMovieCard: FC<SimilarMovieCard> = ({ movieDetails, duration }) => {
   const { setModalOpen } = useMovieContext();
   const navigate = useNavigate();
   const [isHovered, setHovered] = useState<number | null>(null);
@@ -24,11 +26,25 @@ const SimilarMovieCard: FC<SimilarMovieCard> = ({ movieDetails }) => {
       list.some((item: Movie) => item && item?.id === movieDetails?.id)
     );
   }, []);
+  const handlePlay = async () => {
+    const trailerRes = await tmdbApi.getMovieTrailer(
+      parseInt(movieDetails?.id)
+    );
+    if (trailerRes.error) {
+      navigate(`/watch/404-not-found`);
+      setModalOpen(false);
+    } else {
+      setModalOpen(false);
+      navigate(`/watch/${trailerRes.data?.results[0].key}`);
+    }
+  };
+
   return imageSrc ? (
     <div
       className="similarMovieCard"
       onMouseEnter={() => setHovered(movieDetails?.id || null)}
       onMouseLeave={() => setHovered(null)}
+      onClick={() => handlePlay()}
     >
       <div className="similarMovieImageContainer">
         <div
@@ -41,6 +57,7 @@ const SimilarMovieCard: FC<SimilarMovieCard> = ({ movieDetails }) => {
             <Play size={30} fill="white" />
           </div>
         </div>
+        <div className="timeDuration">{duration}</div>
         <img
           src={`https://image.tmdb.org/t/p/w300${imageSrc}`}
           alt="img"

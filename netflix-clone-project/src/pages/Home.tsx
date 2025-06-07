@@ -14,15 +14,15 @@ const Home: FC = () => {
   const [isMuted, setIsMuted] = useState<boolean>(true);
   const {
     popularMovies,
-    selectedMovie,
     setPopularMovies,
-    setSelectedMovie,
     setTopRatedMovies,
     topRatedMovies,
     trendingMovies,
     setTrendingMovies,
     trailerUrl,
     setTrailerUrl,
+    heroTrailer,
+    setHeroTrailer,
   } = useMovieContext();
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const Home: FC = () => {
         );
 
         const randomMovie = popularMoviesResult.data?.results[randomIndex];
-        setSelectedMovie(randomMovie);
+        setHeroTrailer(randomMovie);
         const trailerRes = await tmdbApi.getMovieTrailer(randomMovie.id);
         if (trailerRes.error) {
           setTrailerUrl("");
@@ -129,9 +129,9 @@ const Home: FC = () => {
           overflow: "hidden",
         }}
       >
-        {selectedMovie && (
+        {heroTrailer && (
           <img
-            src={`https://image.tmdb.org/t/p/original/${selectedMovie?.backdrop_path}`}
+            src={`https://image.tmdb.org/t/p/original/${heroTrailer?.backdrop_path}`}
             alt="Image"
             style={{ width: "100%", height: "100%" }}
           />

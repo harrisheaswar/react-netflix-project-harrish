@@ -31,7 +31,7 @@ const Card: FC<CardProps> = ({ item }) => {
     <div
       className="cardContainer"
       onMouseEnter={(e) => handleHover(e)}
-      onClick={isSmallScreen ? (e) => handleHover(e) : undefined}
+      onClick={(e) => handleHover(e)}
       role="presentation"
     >
       <img
