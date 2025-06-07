@@ -34,7 +34,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
     !pip && !location.pathname.startsWith("/watch")
       ? { height: `${customHeight}vh` }
       : undefined;
-
+  const isWatchPage = location.pathname.startsWith("/watch");
   return (
     <div className={getContainerClass()} style={heightStyle} ref={containerRef}>
       <div className="heroVideoBackdrop"></div>
@@ -44,7 +44,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
         playing={playing}
         volume={volume}
         loop={true}
-        controls={false}
+        controls={isWatchPage}
         width="100%"
         height="100%"
         style={{
@@ -52,7 +52,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
           top: 0,
           left: 0,
           right: 0,
-          zIndex: -10000,
+          zIndex: isWatchPage ? 10000 : -10000,
         }}
         config={{
           youtube: {
@@ -62,7 +62,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
               rel: 0,
               disablekb: 1,
               playlist: videoId,
-              controls: 0,
+              controls: isWatchPage ? 1 : 0,
             },
           },
         }}
