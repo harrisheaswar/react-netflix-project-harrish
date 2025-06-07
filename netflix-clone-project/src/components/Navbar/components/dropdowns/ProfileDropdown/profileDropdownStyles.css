@@ -16,8 +16,12 @@
   background-color: black;
   border: 1px solid hsla(0, 0%, 100%, 0.15);
   position: absolute;
-  right: 5px; /* Adjust as needed */
+  right: 10000px; /* Adjust as needed */
   top: 60px; /* Only this is needed to position vertically */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 10px;
   z-index: 9999;
 }
 
@@ -31,6 +35,17 @@
   right: 40px;
 }
 
+.profileContent {
+  display: flex;
+  gap: 5px;
+  color: white;
+  font-size: 12px;
+  opacity: 0;
+}
+
 .profileDropdownContainer.active .dropdownArrow {
+  opacity: 1;
+}
+.profileDropdownContainer.active .profileContent {
   opacity: 1;
 }

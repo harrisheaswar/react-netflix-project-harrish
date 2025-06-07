@@ -12,11 +12,11 @@ export const navbarLinks = [
     url: "/",
   },
   {
-    name: "New & Popular",
-    url: "/",
-  },
-  {
     name: "My List",
     url: "/myList",
+  },
+  {
+    name: "New & Popular",
+    url: "/",
   },
 ];

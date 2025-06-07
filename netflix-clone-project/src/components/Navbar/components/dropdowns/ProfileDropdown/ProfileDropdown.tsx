@@ -3,6 +3,7 @@ import type { DropdownMenuProps } from "@/types/types";
 import { type FC, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import "./profileDropdownStyles.css";
+import { CircleHelp, UserCircle2 } from "lucide-react";
 interface ProfileDropdownProps extends DropdownMenuProps {
   onMouseEnter: () => void;
   onMouseLeave: () => void;
@@ -26,7 +27,7 @@ const ProfileDropdown: FC<ProfileDropdownProps> = ({
       const rect = iconRef.current.getBoundingClientRect();
       setPosition({
         top: rect.bottom + window.scrollY + 40,
-        left: rect.left + window.scrollX - 90,
+        left: rect.left + window.scrollX - 120,
       });
     }
   }, [triggerLabel]);
@@ -44,6 +45,14 @@ const ProfileDropdown: FC<ProfileDropdownProps> = ({
         left: position.left,
       }}
     >
+      <div className="profileContent">
+        <UserCircle2 size={20} />
+        <span>Account</span>
+      </div>
+      <div className="profileContent">
+        <CircleHelp size={20} />
+        <span>Help</span>
+      </div>
       <span className="dropdownArrow">&#9660;</span>
     </div>
   );

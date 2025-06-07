@@ -11,7 +11,6 @@ const BrowseDropdown: FC<DropdownMenuProps> = ({
   isOpen,
 }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
   useClickOutside(dropdownRef, () => {
     if (isOpen) {
       onClose();
@@ -46,18 +45,7 @@ const BrowseDropdown: FC<DropdownMenuProps> = ({
         <span className="dropdownArrows">&#9660;</span>
         <div className="navDropdownContent">
           {navbarLinks.map((linkItem) => (
-            <Link
-              key={linkItem.name}
-              to={`/movies`}
-              className="optionTabs"
-              onClick={(e) => {
-                e.preventDefault(); // Stop default routing
-                e.stopPropagation();
-                console.log(linkItem.url, "==>");
-                onClose(); // Close dropdown
-                navigate(linkItem.url);
-              }}
-            >
+            <Link key={linkItem.name} to={linkItem.url} className="optionTabs">
               {linkItem.name}
             </Link>
           ))}

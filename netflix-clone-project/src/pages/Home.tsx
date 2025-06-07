@@ -7,6 +7,7 @@ import "../components/Hero/heroStyles.css";
 import { useEffect, useState, type FC } from "react";
 import "./pageStyles/homePageStyle.css";
 import VideoPlayer from "@/components/VideoPlayer/VideoPlayer";
+import Spinner from "@/components/CustomComponents/Spinner/Spinner";
 const Home: FC = () => {
   const [genresWithMovies, setGenresWithMovies] = useState<
     GenreWithMovie[] | null
@@ -137,12 +138,14 @@ const Home: FC = () => {
           />
         )}
         <div className="heroVideoBackdrop"></div>
-        {trailerUrl && (
+        {trailerUrl ? (
           <VideoPlayer
             videoId={trailerUrl}
             customHeight="0"
             isMuted={isMuted}
           />
+        ) : (
+          <Spinner />
         )}
       </div>
     </>

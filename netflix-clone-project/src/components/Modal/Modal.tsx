@@ -15,6 +15,8 @@ import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import { tmdbApi } from "@/tmdbApi";
 import SimilarMovieCard from "../SimilarMovieCard/SimilarMovieCard";
 import Spinner from "../CustomComponents/Spinner/Spinner";
+import { useMovieContext } from "@/context/MovieContext";
+import { useNavigate } from "react-router-dom";
 
 interface ModalProps {
   isOpen: boolean;
@@ -30,10 +32,10 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, movieData }) => {
   const [videoId, setVideoId] = useState<string>("");
   const [movieDetails, setMovieDetails] = useState<MovieDetails | null>(null);
   const [similarMovies, setSimilarMovies] = useState<Movie[]>([]);
-
+  const navigate = useNavigate();
+  const { setModalOpen } = useMovieContext();
   useEffect(() => {
     let list = JSON.parse(localStorage.getItem("movieList") || "[]");
-    console.log(list);
     setAddedToFavorites(
       list.some((item: Movie) => item && item?.id === movieData?.id)
     );
@@ -83,7 +85,13 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, movieData }) => {
               <p className="modalTitle">{movieDetails?.title}</p>
               <div className="modalPlayContainer">
                 <div className="modalButtonSet">
-                  <button className="modalPlayButton">
+                  <button
+                    className="modalPlayButton"
+                    onClick={() => {
+                      navigate(`/watch/${videoId}`);
+                      setModalOpen(false);
+                    }}
+                  >
                     <Play size={20} fill="black" />
                     <span>Play</span>
                   </button>

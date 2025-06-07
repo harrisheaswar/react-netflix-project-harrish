@@ -28,6 +28,9 @@ const Navbar: FC = () => {
     }
     const handleScroll = () => {
       setIsSticky(window.scrollY > 0);
+      setActiveNavDropdown("");
+      setOpen(false);
+      setIsMenuOpen(false);
     };
 
     document.addEventListener("mousedown", handleClickOutside);
