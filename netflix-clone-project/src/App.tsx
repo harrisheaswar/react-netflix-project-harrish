@@ -11,6 +11,7 @@ import { CardProvider, useCardContext } from "./context/CardContext";
 import PopUpCard from "./components/PopUpCard/PopUpCard";
 import { UtilsProvider } from "./context/UtilsContext";
 import Modal from "./components/Modal/Modal";
+import Movies from "./pages/Movies";
 const App: FC = () => {
   return (
     <MovieProvider>
@@ -52,6 +53,7 @@ const MainContent: FC = () => {
         <Route path="/watch/:id" element={<Watch />} />
         <Route path="/myList" element={<MyLists />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/movies" element={<Movies />} />
         <Route
           path="*"
           element={<NotFound content={`Oops ...Page not found`} />}

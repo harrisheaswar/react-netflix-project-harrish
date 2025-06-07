@@ -16,15 +16,17 @@ const Card: FC<CardProps> = ({ item }) => {
     }
     const cardElement = e.currentTarget as HTMLElement;
     const cardRect = cardElement.getBoundingClientRect();
-    setCardState({
-      item,
-      isHovered: true,
-      cardId: item.id,
-      position: {
-        x: cardRect.left + cardRect.width / 2,
-        y: cardRect.top,
-      },
-    });
+    setTimeout(() => {
+      setCardState({
+        item,
+        isHovered: true,
+        cardId: item.id,
+        position: {
+          x: cardRect.left + cardRect.width / 2,
+          y: cardRect.top,
+        },
+      });
+    }, 300);
   };
 
   return (

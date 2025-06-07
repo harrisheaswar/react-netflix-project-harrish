@@ -16,6 +16,7 @@ const Navbar: FC = () => {
   const isSmallScreen = useMediaQuery({ maxWidth: 895 });
   const [activeNavDropdown, setActiveNavDropdown] = useState<String>("");
   const [isSticky, setIsSticky] = useState<boolean | null>(false);
+  const [isOpen, setOpen] = useState<boolean>(false);
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -87,7 +88,10 @@ const Navbar: FC = () => {
           ) : (
             <div
               id="browse-icon"
-              onClick={() => handleBrowseOrProfileClick("Browse")}
+              onClick={() => {
+                handleBrowseOrProfileClick("Browse");
+                setOpen(true);
+              }}
             >
               <span className="optionTabs">Browse</span>
               {"  "}
@@ -163,7 +167,9 @@ const Navbar: FC = () => {
         triggerLabel={activeNavDropdown}
         onClose={() => {
           setActiveNavDropdown("");
+          setOpen(false);
         }}
+        isOpen={isOpen}
       />
       <ProfileDropdown
         triggerLabel={activeNavDropdown}

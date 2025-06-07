@@ -9,7 +9,7 @@
   top: 65px;
   width: 0px;
   height: 0px;
-  pointer-events: none;
+  pointer-events: all;
 }
 
 .navbarDropdown.browse {
@@ -21,7 +21,7 @@
   background-color: black;
   border: 1px solid hsla(0, 0%, 100%, 0.15);
   border-top: 2px solid white;
-  z-index: 9999;
+  z-index: 1000000;
   padding: 20px;
   pointer-events: auto;
 }

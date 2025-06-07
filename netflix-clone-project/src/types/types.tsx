@@ -1,6 +1,7 @@
 export interface DropdownMenuProps {
   triggerLabel: React.ReactNode;
   onClose: () => void;
+  isOpen?: boolean;
 }
 
 export interface Movie {

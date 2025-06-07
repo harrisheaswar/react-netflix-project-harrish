@@ -4,11 +4,11 @@ export const navbarLinks = [
     url: "/",
   },
   {
-    name: "TV Shows",
-    url: "/",
+    name: "Movies",
+    url: "/movies",
   },
   {
-    name: "Movies",
+    name: "TV Shows",
     url: "/",
   },
   {
@@ -18,9 +18,5 @@ export const navbarLinks = [
   {
     name: "My List",
     url: "/myList",
-  },
-  {
-    name: "Browse By Languages",
-    url: "/",
   },
 ];

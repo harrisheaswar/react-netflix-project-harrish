@@ -32,7 +32,6 @@ export const UtilsProvider: FC<{ children: ReactNode }> = ({ children }) => {
         setMovieList(parsedList);
 
         const exists = parsedList.some((item: Movie) => item.id === movie.id);
-        console.log(exists, "===>");
         if (exists) {
           const newMovieList = parsedList.filter(
             (item: Movie) => item.id !== movie.id

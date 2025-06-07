@@ -28,6 +28,7 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
   const { cardState, setCardState } = useCardContext();
   const { setModalOpen, setSelectedMovie } = useMovieContext();
   const { addToFavoriteList } = useUtilsContext();
+  const [thumbsUp, setThumbsUp] = useState<boolean>(false);
 
   const isSmallScreen = useMediaQuery({ query: "(max-width: 900px)" });
   const [title, setTitle] = useState<string>("MOVIE");
@@ -216,8 +217,11 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
             >
               {addedToFavorites ? <Check size={25} /> : <Plus size={25} />}
             </button>
-            <button className="popUpVolumeStyle otherButtons">
-              <ThumbsUp size={25} />
+            <button
+              className="popUpVolumeStyle otherButtons"
+              onClick={() => setThumbsUp(!thumbsUp)}
+            >
+              <ThumbsUp size={25} fill={thumbsUp ? "white" : "transparent"} />
             </button>
           </div>
           <button
