@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import type { FC } from "react";
 import netflixLogo from "@/assets/netflix-logo.png";
 import { navbarLinks } from "./navbarLinks";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./navbarStyles.css";
 import { Bell, Search } from "lucide-react";
 import profileIcon from "@/assets/profile.jpg";
@@ -17,6 +17,8 @@ const Navbar: FC = () => {
   const [activeNavDropdown, setActiveNavDropdown] = useState<String>("");
   const [isSticky, setIsSticky] = useState<boolean | null>(false);
   const [isOpen, setOpen] = useState<boolean>(false);
+  const [query, setQuery] = useState<string>("");
+  const navigate = useNavigate();
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -62,6 +64,15 @@ const Navbar: FC = () => {
   };
   const handleBrowseOrProfileClick = (navType: String) => {
     setActiveNavDropdown(navType);
+  };
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setQuery(value);
+    if (!value) {
+      navigate(`/`);
+      return;
+    }
+    navigate(`/search/${e.target.value}`);
   };
 
   return (
@@ -136,6 +147,8 @@ const Navbar: FC = () => {
                 placeholder="Titles, people, genre"
                 aria-label="Search"
                 className={`searchInput ${isSearchActive ? "active" : ""}`}
+                value={query}
+                onChange={(e) => handleSearch(e)}
               />
             </div>
           </div>

@@ -52,7 +52,7 @@ const MainContent: FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/watch/:id" element={<Watch />} />
         <Route path="/myList" element={<MyLists />} />
-        <Route path="/search" element={<Search />} />
+        <Route path="/search/:query" element={<Search />} />
         <Route path="/movies" element={<Movies />} />
         <Route
           path="*"

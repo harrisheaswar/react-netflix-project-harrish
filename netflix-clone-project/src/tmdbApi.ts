@@ -64,4 +64,9 @@ export const tmdbApi = {
     get<{ results: Movie[] }>(`/movie/${movieId}/similar`, {
       params: { page: 1 },
     }),
+
+  searchMovies: (keyword: String, page: number = 1) =>
+    get<{ results: Movie[] }>(`search/movie`, {
+      params: { query: keyword, page },
+    }),
 };
