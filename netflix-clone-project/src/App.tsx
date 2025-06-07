@@ -52,7 +52,14 @@ const MainContent: FC = () => {
         <Route path="/watch/:id" element={<Watch />} />
         <Route path="/myList" element={<MyLists />} />
         <Route path="/search" element={<Search />} />
-        <Route path="*" element={<NotFound />} />
+        <Route
+          path="*"
+          element={<NotFound content={`Oops ...Page not found`} />}
+        />
+        <Route
+          path="/watch/404-not-found"
+          element={<NotFound content={`Oops ...Page not found`} />}
+        />
       </Routes>
     </>
   );

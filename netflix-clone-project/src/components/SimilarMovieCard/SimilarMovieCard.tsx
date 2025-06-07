@@ -21,11 +21,11 @@ const SimilarMovieCard: FC<SimilarMovieCard> = ({ movieDetails, duration }) => {
   const [imageSrc] = useState<string>(movieDetails?.backdrop_path || "");
   useEffect(() => {
     let list = JSON.parse(localStorage.getItem("movieList") || "[]");
-    console.log(list);
     setAddedToFavorites(
       list.some((item: Movie) => item && item?.id === movieDetails?.id)
     );
   }, []);
+
   const handlePlay = async () => {
     const trailerRes = await tmdbApi.getMovieTrailer(
       parseInt(movieDetails?.id)
@@ -35,7 +35,11 @@ const SimilarMovieCard: FC<SimilarMovieCard> = ({ movieDetails, duration }) => {
       setModalOpen(false);
     } else {
       setModalOpen(false);
-      navigate(`/watch/${trailerRes.data?.results[0].key}`);
+      if (trailerRes.data?.results?.length > 0) {
+        navigate(`/watch/${trailerRes.data?.results[0].key}`);
+      } else {
+        navigate(`/watch/404-not-found`);
+      }
     }
   };
 
@@ -88,7 +92,9 @@ const SimilarMovieCard: FC<SimilarMovieCard> = ({ movieDetails, duration }) => {
         </button>
       </div>
       <p style={{ fontSize: "13px", fontWeight: "500", margin: "0px 10px" }}>
-        {movieDetails?.overview.slice(0, 200) + "..."}
+        {movieDetails?.overview
+          ? movieDetails?.overview.slice(0, 200) + "..."
+          : "Description Not Available"}
       </p>
     </div>
   ) : (

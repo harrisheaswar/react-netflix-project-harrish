@@ -1,6 +1,7 @@
 import VideoPlayer from "@/components/VideoPlayer/VideoPlayer";
 import { type FC } from "react";
 import { useParams } from "react-router-dom";
+import NotFound from "./NotFound";
 
 const Watch: FC = () => {
   const id = useParams();
@@ -10,7 +11,7 @@ const Watch: FC = () => {
       <VideoPlayer videoId={id.id} isMuted={true} />
     </div>
   ) : (
-    <div>404-Not-Found</div>
+    <NotFound content={`Oops.. Page Not Found`} />
   );
 };
 

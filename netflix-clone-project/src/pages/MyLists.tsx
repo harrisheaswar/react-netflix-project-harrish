@@ -1,6 +1,6 @@
 import type { FC } from "react";
 const MyLists: FC = () => {
-  return <div>MyLists</div>;
+  return <div style={{ position: "relative" }}></div>;
 };
 
 export default MyLists;
