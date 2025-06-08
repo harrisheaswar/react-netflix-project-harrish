@@ -23,7 +23,6 @@ export const UtilsProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const { setCardState } = useCardContext();
 
   const addToFavoriteList = (movie: Movie) => {
-    console.log(movie);
     let list = localStorage.getItem("movieList");
 
     if (list) {

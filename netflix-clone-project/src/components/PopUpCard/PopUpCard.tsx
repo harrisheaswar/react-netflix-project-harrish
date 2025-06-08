@@ -77,7 +77,6 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
       setFavData(cardState?.item);
 
       let list = JSON.parse(localStorage.getItem("movieList") || "[]");
-      console.log(list);
       setAddedToFavorites(
         list.some(
           (item: Movie) =>
@@ -99,7 +98,6 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
         } else if (movieData.data) {
           setMovieDetails(movieData.data);
         }
-        console.log(movieDetails);
       };
       fetchDetails();
     }

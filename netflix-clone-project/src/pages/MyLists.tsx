@@ -5,8 +5,6 @@ import { useEffect, type FC } from "react";
 import "./pageStyles/moviesPageStyles.css";
 const MyLists: FC = () => {
   const { movieList } = useUtilsContext();
-  const movies = JSON.parse(localStorage.getItem("movieList") || "");
-  console.log(movies);
   useEffect(() => {}, [movieList]);
   return (
     <div className="moviesPageContainer">

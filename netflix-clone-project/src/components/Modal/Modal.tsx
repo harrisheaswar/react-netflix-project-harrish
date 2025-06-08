@@ -58,11 +58,9 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, movieData }) => {
         setMovieDetails(movieDetailsResponse.data);
       }
       if (similarMoviesResponse.error) {
-        console.log(similarMoviesResponse);
         setSimilarMovies([]);
       } else if (similarMoviesResponse.data) {
         setSimilarMovies(similarMoviesResponse?.data?.results);
-        console.log(similarMoviesResponse?.data?.results);
       }
     };
     fetchData();
