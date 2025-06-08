@@ -13,6 +13,7 @@ import { UtilsProvider } from "./context/UtilsContext";
 import Modal from "./components/Modal/Modal";
 import Movies from "./pages/Movies";
 import { Toaster } from "react-hot-toast";
+import type { MovieDetails } from "./types/types";
 const App: FC = () => {
   return (
     <MovieProvider>
@@ -51,7 +52,7 @@ const MainContent: FC = () => {
       />
 
       <Modal
-        movieData={selectedMovie}
+        movieData={selectedMovie as MovieDetails}
         isOpen={isModalOpen}
         onClose={handleModal}
       />

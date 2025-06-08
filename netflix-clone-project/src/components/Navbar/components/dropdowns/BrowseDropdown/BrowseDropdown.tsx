@@ -1,7 +1,7 @@
 import { type FC, useEffect, useRef, useState } from "react";
 import "./browseDropdownStyles.css";
 import { navbarLinks } from "../../../navbarLinks";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { type DropdownMenuProps } from "@/types/types";
 import { useClickOutside } from "@/hooks/useClickOutside";
 

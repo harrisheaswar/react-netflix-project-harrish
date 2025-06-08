@@ -28,7 +28,9 @@ interface PopUpCardProps {
 const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
   const { cardState, setCardState } = useCardContext();
   const { setModalOpen, setSelectedMovie } = useMovieContext();
-  const { addToFavoriteList } = useUtilsContext();
+  const utilContext = useUtilsContext();
+  if (!utilContext) return null;
+  const { addToFavoriteList } = utilContext;
   const [thumbsUp, setThumbsUp] = useState<boolean>(false);
 
   const isSmallScreen = useMediaQuery({ query: "(max-width: 900px)" });
@@ -37,13 +39,12 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
   const [trailerUrl, setTrailerUrl] = useState<string>("");
   const [showTrailer, setShowTrailer] = useState<boolean>(false);
   const [imgUrl, setImgUrl] = useState<string>("");
-  const [movieId, setMovieId] = useState<number>(0);
   const [faveData, setFavData] = useState<Movie | null>(null);
   const [addedToFavorites, setAddedToFavorites] = useState<boolean>(false);
   const [movieDetails, setMovieDetails] = useState<MovieDetails | null>(null);
   const handlePopoverMouseLeave = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCardState((prev: any) => ({
+    setCardState(() => ({
       position: { x: -1000, y: 0 },
       isHovered: false,
       cardId: null,
@@ -73,7 +74,6 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
         ` https://image.tmdb.org/t/p/w500${cardState.item.backdrop_path}`
       );
       setTitle(cardState?.item?.title || "MOVIE");
-      setMovieId(cardState?.item?.id);
       setFavData(cardState?.item);
 
       let list = JSON.parse(localStorage.getItem("movieList") || "[]");
@@ -110,7 +110,7 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
       backgroundImage:
         "linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05))",
       borderRadius: "8px",
-      position: "fixed",
+      position: "fixed" as const,
       zIndex: "1000",
       overflow: "hidden",
     },

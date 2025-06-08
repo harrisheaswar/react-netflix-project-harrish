@@ -8,7 +8,7 @@ const Watch: FC = () => {
   if (!id) return <div>No Movie Selected</div>;
   return (id.id as String) !== "404-not-found" ? (
     <div style={{ position: "relative" }}>
-      <VideoPlayer videoId={id.id} isMuted={true} />
+      <VideoPlayer videoId={id.id?.toString() || ""} isMuted={true} />
     </div>
   ) : (
     <NotFound content={`Oops.. Page Not Found`} />

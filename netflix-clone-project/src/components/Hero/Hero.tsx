@@ -35,12 +35,16 @@ const Hero: FC<HeroProps> = ({ setIsMuted, isMuted }) => {
         {heroTrailer && (
           <div className="heroTitleContainer">
             <h1 className="heroTitle">
-              {heroTrailer?.title?.length > 30 && window.innerWidth < 765
+              {heroTrailer.title &&
+              heroTrailer?.title?.length > 30 &&
+              window.innerWidth < 765
                 ? heroTrailer.title?.substring(0, 30) + "..."
-                : formatTitle(heroTrailer.title)}
+                : formatTitle(heroTrailer.title ?? "")}
             </h1>
             <p className="heroDescription">
-              {heroTrailer?.overview?.length > 30 && window.innerWidth < 600
+              {heroTrailer.overview &&
+              heroTrailer?.overview?.length > 30 &&
+              window.innerWidth < 600
                 ? heroTrailer.overview?.substring(0, 100) + "..."
                 : heroTrailer.overview?.substring(0, 200) + "..."}
             </p>
@@ -66,7 +70,7 @@ const Hero: FC<HeroProps> = ({ setIsMuted, isMuted }) => {
               </div>
               <div style={{ display: "flex", gap: "20px" }}>
                 <button
-                  onClick={() => setIsMuted()}
+                  onClick={() => setIsMuted?.()}
                   className="volumeButtonStyle"
                 >
                   {!isMuted ? <Volume2 size={20} /> : <VolumeOff size={20} />}

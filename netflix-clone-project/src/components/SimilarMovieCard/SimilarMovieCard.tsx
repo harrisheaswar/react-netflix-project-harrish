@@ -16,7 +16,9 @@ const SimilarMovieCard: FC<SimilarMovieCard> = ({ movieDetails, duration }) => {
   const { setModalOpen } = useMovieContext();
   const navigate = useNavigate();
   const [isHovered, setHovered] = useState<number | null>(null);
-  const { addToFavoriteList } = useUtilsContext();
+  const utilsContext = useUtilsContext();
+  if (!utilsContext) return null;
+  const { addToFavoriteList } = utilsContext;
   const [addedToFavorites, setAddedToFavorites] = useState<boolean>(false);
 
   const [imageSrc] = useState<string>(movieDetails?.backdrop_path || "");
@@ -29,14 +31,14 @@ const SimilarMovieCard: FC<SimilarMovieCard> = ({ movieDetails, duration }) => {
 
   const handlePlay = async () => {
     const trailerRes = await tmdbApi.getMovieTrailer(
-      parseInt(movieDetails?.id)
+      parseInt(movieDetails?.id.toString() || "")
     );
     if (trailerRes.error) {
       navigate(`/watch/404-not-found`);
       setModalOpen(false);
     } else {
       setModalOpen(false);
-      if (trailerRes.data?.results?.length > 0) {
+      if (trailerRes.data && trailerRes.data?.results?.length > 0) {
         navigate(`/watch/${trailerRes.data?.results[0].key}`);
       } else {
         navigate(`/watch/404-not-found`);

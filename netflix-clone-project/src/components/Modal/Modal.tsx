@@ -27,7 +27,9 @@ interface ModalProps {
 
 const Modal: FC<ModalProps> = ({ isOpen, onClose, movieData }) => {
   if (!isOpen) return null;
-  const { addToFavoriteList, randomDuration } = useUtilsContext();
+  const utilContext = useUtilsContext();
+  if (!utilContext) return null;
+  const { addToFavoriteList, randomDuration } = utilContext;
   const [addedToFavorites, setAddedToFavorites] = useState<boolean>(false);
   const [isMuted, setIsMuted] = useState<boolean>(true);
   const [videoId, setVideoId] = useState<string>("");
@@ -188,7 +190,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, movieData }) => {
                     .map((movie, index) => (
                       <SimilarMovieCard
                         key={index}
-                        movieDetails={movie}
+                        movieDetails={movie as MovieDetails}
                         duration={randomDuration()}
                       />
                     ))}

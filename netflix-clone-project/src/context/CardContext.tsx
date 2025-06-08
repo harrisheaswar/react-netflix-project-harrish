@@ -16,7 +16,7 @@ interface CardState {
 
 interface CardContextType {
   cardState: CardState;
-  setCardState: (state: CardState) => void;
+  setCardState: React.Dispatch<React.SetStateAction<CardState>>;
 }
 
 const CardContext = createContext<CardContextType | undefined>(undefined);
