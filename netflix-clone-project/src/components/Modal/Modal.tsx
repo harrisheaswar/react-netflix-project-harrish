@@ -119,7 +119,10 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, movieData }) => {
                       setThumbsUp(!thumbsUp);
                     }}
                   >
-                    <ThumbsUp size={25} fill={thumbsUp ? "white" : undefined} />
+                    <ThumbsUp
+                      size={25}
+                      fill={thumbsUp ? "white" : "transparent"}
+                    />
                   </button>
                 </div>
                 <button
