@@ -17,6 +17,6 @@ export const navbarLinks = [
   },
   {
     name: "New & Popular",
-    url: "/",
+    url: "/popular",
   },
 ];

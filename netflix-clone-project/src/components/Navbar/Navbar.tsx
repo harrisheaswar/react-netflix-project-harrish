@@ -9,6 +9,7 @@ import profileIcon from "@/assets/profile.jpg";
 import { useMediaQuery } from "react-responsive";
 import BrowseDropdown from "./components/dropdowns/BrowseDropdown/BrowseDropdown";
 import ProfileDropdown from "./components/dropdowns/ProfileDropdown/ProfileDropdown";
+import Notifications from "./components/dropdowns/Notifications/Notification";
 const Navbar: FC = () => {
   const [isSearchActive, setIsSearchActive] = useState<boolean>(false);
   const searchRef = useRef<HTMLDivElement>(null);
@@ -18,6 +19,8 @@ const Navbar: FC = () => {
   const [isSticky, setIsSticky] = useState<boolean | null>(false);
   const [isOpen, setOpen] = useState<boolean>(false);
   const [query, setQuery] = useState<string>("");
+  const [notificationsActive, setNotificationsActive] =
+    useState<boolean>(false);
   const navigate = useNavigate();
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -33,6 +36,7 @@ const Navbar: FC = () => {
       setActiveNavDropdown("");
       setOpen(false);
       setIsMenuOpen(false);
+      setNotificationsActive(false);
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -79,14 +83,17 @@ const Navbar: FC = () => {
     <>
       <header className={`container ${isSticky ? "scrollActive" : ""}`}>
         <div className="leftSubContainer">
-          <img
-            src={netflixLogo}
-            alt="Netflix Logo"
-            style={{
-              width: isSmallScreen ? "4rem" : "7.3rem",
-              marginRight: isSmallScreen ? "15px" : "30px",
-            }}
-          />
+          <Link to={`/`}>
+            <img
+              src={netflixLogo}
+              alt="Netflix Logo"
+              style={{
+                width: isSmallScreen ? "4rem" : "7.3rem",
+                marginRight: isSmallScreen ? "15px" : "30px",
+              }}
+            />
+          </Link>
+
           {!isSmallScreen ? (
             <div style={{ display: "flex", gap: "20px" }}>
               {navbarLinks.map((linkItem) => (
@@ -153,7 +160,15 @@ const Navbar: FC = () => {
             </div>
           </div>
 
-          <Bell size={20} color="white" cursor="pointer" />
+          <Bell
+            size={20}
+            color="white"
+            cursor="pointer"
+            id="bell-icon"
+            onMouseEnter={() => setNotificationsActive(true)}
+            onMouseLeave={() => setNotificationsActive(false)}
+            onClick={() => setNotificationsActive(true)}
+          />
           <div
             className="profileIcon"
             id="profile-icon"
@@ -196,6 +211,14 @@ const Navbar: FC = () => {
           handleProfileMenuHover(true);
         }}
         onMouseLeave={() => handleProfileMenuHover(false)}
+      />
+      <Notifications
+        isOpen={notificationsActive}
+        onMouseLeave={() => setNotificationsActive(false)}
+        onMouseEnter={() => setNotificationsActive(true)}
+        onClose={() => {
+          setNotificationsActive(false);
+        }}
       />
     </>
   );

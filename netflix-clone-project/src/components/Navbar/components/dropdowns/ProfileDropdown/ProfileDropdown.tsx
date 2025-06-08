@@ -17,6 +17,7 @@ const ProfileDropdown: FC<ProfileDropdownProps> = ({
 }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const isSmallScreen = useMediaQuery({ maxWidth: 895 });
+  const [highlighted, setHighlighted] = useState<string>("");
   const iconRef = useRef<HTMLElement | null>(null);
   const [position, setPosition] = useState({ top: 0, left: 0 });
   useClickOutside(dropdownRef, onClose);

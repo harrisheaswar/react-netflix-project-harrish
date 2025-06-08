@@ -54,6 +54,7 @@ const MainContent: FC = () => {
         <Route path="/myList" element={<MyLists />} />
         <Route path="/search/:query" element={<Search />} />
         <Route path="/movies" element={<Movies />} />
+        <Route path="/popular" element={<Home />} />
         <Route
           path="*"
           element={<NotFound content={`Oops ...Page not found`} />}
