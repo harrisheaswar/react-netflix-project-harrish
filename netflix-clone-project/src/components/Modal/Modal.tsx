@@ -35,6 +35,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, movieData }) => {
   const [videoId, setVideoId] = useState<string>("");
   const [movieDetails, setMovieDetails] = useState<MovieDetails | null>(null);
   const [similarMovies, setSimilarMovies] = useState<Movie[]>([]);
+  const [thumbsUp, setThumbsUp] = useState<boolean>(false);
   const navigate = useNavigate();
   const { setModalOpen } = useMovieContext();
   useEffect(() => {
@@ -112,8 +113,13 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, movieData }) => {
                       <Plus size={25} />
                     )}
                   </button>
-                  <button className="modalOtherButtons">
-                    <ThumbsUp size={25} />
+                  <button
+                    className="modalOtherButtons"
+                    onClick={() => {
+                      setThumbsUp(!thumbsUp);
+                    }}
+                  >
+                    <ThumbsUp size={25} fill={thumbsUp ? "white" : undefined} />
                   </button>
                 </div>
                 <button
