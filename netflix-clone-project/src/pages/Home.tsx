@@ -122,14 +122,7 @@ const Home: FC = () => {
             ))}
         </div>
       </div>
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          zIndex: 0,
-          overflow: "hidden",
-        }}
-      >
+      <div className="homeVideo">
         {heroTrailer && (
           <img
             src={`https://image.tmdb.org/t/p/original/${heroTrailer?.backdrop_path}`}

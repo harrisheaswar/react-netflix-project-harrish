@@ -6,6 +6,7 @@ import { useEffect, useState, type FC } from "react";
 import { useNavigate } from "react-router-dom";
 import "./similarMovieCardStyles.css";
 import { tmdbApi } from "@/tmdbApi";
+import toast from "react-hot-toast";
 interface SimilarMovieCard {
   movieDetails?: MovieDetails;
   duration?: string;
@@ -83,9 +84,13 @@ const SimilarMovieCard: FC<SimilarMovieCard> = ({ movieDetails, duration }) => {
         </div>
         <button
           className="similarMovieFavButton"
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             addToFavoriteList(movieDetails as Movie);
             setAddedToFavorites(!addedToFavorites);
+            !addedToFavorites
+              ? toast.success(`Added to Favorites (MyList Page)`)
+              : toast.success(`Removed from Favorites (MyList Page)`);
           }}
         >
           {addedToFavorites ? <Check size={25} /> : <Plus size={25} />}

@@ -2,14 +2,12 @@ import type { Movie } from "@/types/types";
 import type { FC } from "react";
 import "./cardStyles.css";
 import { useCardContext } from "@/context/CardContext";
-import { useMediaQuery } from "react-responsive";
 interface CardProps {
   item: Movie;
 }
 
 const Card: FC<CardProps> = ({ item }) => {
   const { cardState, setCardState } = useCardContext();
-  const isSmallScreen = useMediaQuery({ query: "(max-width: 900px)" });
   const handleHover = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (cardState.cardId == item.id && cardState.isHovered) {
       return;

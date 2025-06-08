@@ -135,7 +135,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, movieData }) => {
                   <span>
                     {movieDetails?.release_date
                       ? movieDetails?.release_date.slice(0, 4)
-                      : "2hrs 14min"}
+                      : "2015"}
                   </span>
                   <span className="pegiStyleDetails">HD</span>
                   <span>

@@ -13,7 +13,7 @@ import "../Hero/heroStyles.css";
 import { tmdbApi } from "@/tmdbApi";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import { useCardContext } from "@/context/CardContext";
-import type { Movie } from "@/types/types";
+import type { Movie, MovieDetails } from "@/types/types";
 import { useMediaQuery } from "react-responsive";
 import { useUtilsContext } from "@/context/UtilsContext";
 import { Link } from "react-router";
@@ -40,6 +40,7 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
   const [movieId, setMovieId] = useState<number>(0);
   const [faveData, setFavData] = useState<Movie | null>(null);
   const [addedToFavorites, setAddedToFavorites] = useState<boolean>(false);
+  const [movieDetails, setMovieDetails] = useState<MovieDetails | null>(null);
   const handlePopoverMouseLeave = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCardState((prev: any) => ({
@@ -78,15 +79,27 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
       let list = JSON.parse(localStorage.getItem("movieList") || "[]");
       console.log(list);
       setAddedToFavorites(
-        list.some((item: Movie) => item && item.id === cardState.item.id)
+        list.some(
+          (item: Movie) =>
+            item && cardState.item && item.id === cardState.item.id
+        )
       );
       const fetchDetails = async () => {
-        const trailerRes = await tmdbApi.getMovieTrailer(cardState.item?.id);
+        const [trailerRes, movieData] = await Promise.all([
+          tmdbApi.getMovieTrailer(cardState.item?.id as number),
+          tmdbApi.getMovieDetails(cardState.item?.id as number),
+        ]);
         if (trailerRes.error) {
           setTrailerUrl("");
         } else if (trailerRes.data) {
           setTrailerUrl(trailerRes.data.results[0].key);
         }
+        if (movieData.error) {
+          setMovieDetails(null);
+        } else if (movieData.data) {
+          setMovieDetails(movieData.data);
+        }
+        console.log(movieDetails);
       };
       fetchDetails();
     }
@@ -210,16 +223,28 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
           </button>
         </div>
         <div className="popupDetails">
-          <span style={{ color: "green", fontWeight: 700 }}>70% Match</span>
-          <span style={{ border: "1px solid gray", padding: "1px 2px" }}>
-            UA/16+
+          <span style={{ color: "green", fontWeight: 700 }}>
+            {movieDetails?.vote_average
+              ? `${(movieDetails?.vote_average * 10).toFixed(0)}% Match`
+              : "N/A"}
           </span>
-          <span>2h 20m</span>
+          <span style={{ border: "1px solid gray", padding: "1px 2px" }}>
+            {movieDetails?.adult ? "A" : "U/A 16+"}
+          </span>
+          <span>
+            {movieDetails?.runtime
+              ? movieDetails?.runtime + "mins"
+              : "2hrs 14min"}
+          </span>
           <span style={{ border: "1px solid gray", padding: "1px 2px" }}>
             HD
           </span>
         </div>
-        <div className="popupGenre">Witty •Heartfelt •Drama</div>
+        <div className="popupGenre">
+          {movieDetails?.genres
+            ? movieDetails.genres.map((genre) => genre.name).join(", ")
+            : "adventure, action, intense"}
+        </div>
       </div>
     </div>
   );
