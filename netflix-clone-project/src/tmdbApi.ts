@@ -1,4 +1,4 @@
-import axios, { type AxiosRequestConfig } from "axios";
+import axios, { type AxiosRequestConfig, type AxiosError } from "axios";
 import type { Genre, Movie, MovieDetails, Trailer } from "./types/types";
 import toast from "react-hot-toast";
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -28,9 +28,10 @@ const get = async <T>(
   try {
     const response = await axiosInstance.get<T>(url, config);
     return { data: response.data };
-  } catch (error) {
-    const status = error?.response?.data;
-    const details = error?.reponse?.data;
+  } catch (err) {
+    const error = err as AxiosError;
+    const status = error?.response?.status;
+    const details = error?.response?.data;
     toast.error("Something went wrong, please try after sometime", {
       id: "toast",
     });

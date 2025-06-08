@@ -63,6 +63,7 @@ const MainContent: FC = () => {
         <Route path="/search/:query" element={<Search />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/popular" element={<Home />} />
+        <Route path="/tv" element={<Home />} />
         <Route
           path="*"
           element={<NotFound content={`Oops ...Page not found`} />}

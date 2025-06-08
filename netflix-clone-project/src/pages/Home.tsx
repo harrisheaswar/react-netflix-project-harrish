@@ -71,7 +71,9 @@ const Home: FC = () => {
         if (trailerRes.error) {
           setTrailerUrl("");
         } else {
-          setTrailerUrl(trailerRes?.data.results[0].key);
+          setTrailerUrl(
+            trailerRes?.data ? trailerRes?.data.results[0].key : ""
+          );
         }
       }
 

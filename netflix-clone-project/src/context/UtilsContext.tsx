@@ -6,7 +6,6 @@ import {
   type FC,
   type ReactNode,
 } from "react";
-import { useCardContext } from "./CardContext";
 
 interface UtilsContextType {
   addToFavoriteList: (movie: Movie) => void;
@@ -20,7 +19,6 @@ export const UtilsProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [movieList, setMovieList] = useState<Movie[]>(
     JSON.parse(localStorage.getItem("movieList") || "[]")
   );
-  const { setCardState } = useCardContext();
 
   const addToFavoriteList = (movie: Movie) => {
     let list = localStorage.getItem("movieList");

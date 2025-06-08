@@ -9,7 +9,7 @@ export const navbarLinks = [
   },
   {
     name: "TV Shows",
-    url: "/",
+    url: "/tv",
   },
   {
     name: "My List",

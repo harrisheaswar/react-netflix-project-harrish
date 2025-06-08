@@ -19,6 +19,7 @@ const Navbar: FC = () => {
   const [isSticky, setIsSticky] = useState<boolean | null>(false);
   const [isOpen, setOpen] = useState<boolean>(false);
   const [query, setQuery] = useState<string>("");
+  const [highlighted, setHighlighted] = useState<string>("");
   const [notificationsActive, setNotificationsActive] =
     useState<boolean>(false);
   const navigate = useNavigate();
@@ -100,7 +101,10 @@ const Navbar: FC = () => {
                 <Link
                   key={linkItem.name}
                   to={linkItem.url}
-                  className="optionTabs"
+                  className={`optionTabs ${
+                    highlighted === linkItem?.name ? `active` : ""
+                  }`}
+                  onClick={() => setHighlighted(linkItem?.name || "")}
                 >
                   {linkItem.name}
                 </Link>

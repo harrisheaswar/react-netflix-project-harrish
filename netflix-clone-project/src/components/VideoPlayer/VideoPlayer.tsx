@@ -1,4 +1,4 @@
-import React, { use, useEffect, useRef, useState, type FC } from "react";
+import { useEffect, useRef, useState, type FC } from "react";
 import ReactPlayer from "react-player";
 import "../Hero/heroStyles.css";
 import "./videoPlayerStyles.css";
