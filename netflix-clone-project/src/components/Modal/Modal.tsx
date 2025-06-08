@@ -187,8 +187,9 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, movieData }) => {
                 {similarMovies &&
                   similarMovies
                     .slice(0, 12)
-                    .map((movie) => (
+                    .map((movie, index) => (
                       <SimilarMovieCard
+                        key={index}
                         movieDetails={movie}
                         duration={randomDuration()}
                       />

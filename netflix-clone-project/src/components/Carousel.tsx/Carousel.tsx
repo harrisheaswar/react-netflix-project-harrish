@@ -23,8 +23,8 @@ const Carousel: FC<CarouselProps> = ({ items, title }) => {
       <h2 className="genreTitle">{title}</h2>
       <div style={{ position: "relative" }}>
         <div className="itemContainer hide-scrollbar" ref={scrollRef}>
-          {items?.map((item) => (
-            <Card item={item} />
+          {items?.map((item, index) => (
+            <Card key={index} item={item} />
           ))}
         </div>
         {scrollVisible !== 0 && (

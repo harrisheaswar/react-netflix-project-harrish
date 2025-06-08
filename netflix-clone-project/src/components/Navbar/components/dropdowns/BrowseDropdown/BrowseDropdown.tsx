@@ -28,7 +28,6 @@ const BrowseDropdown: FC<DropdownMenuProps> = ({
         left: rect.left + window.scrollX - 90,
       });
     }
-    console.log(triggerLabel);
   }, [triggerLabel, isOpen]);
   return (
     <>

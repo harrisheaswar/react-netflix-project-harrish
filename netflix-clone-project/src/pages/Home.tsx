@@ -47,7 +47,6 @@ const Home: FC = () => {
         const allGenreWithMovies = await Promise.all(
           allGenres.data?.genres.map(async (genre) => {
             const movies = await tmdbApi.getMoviesByGenre(genre.id);
-            console.log(movies);
             return {
               id: genre.id,
               name: genre.name,
@@ -114,8 +113,9 @@ const Home: FC = () => {
             <Carousel title="Top Rated Movies" items={topRatedMovies} />
           )}
           {genresWithMovies &&
-            genresWithMovies?.map((movieList) => (
+            genresWithMovies?.map((movieList, index) => (
               <Carousel
+                key={index}
                 items={movieList?.movies}
                 title={`${movieList.name} Movies`}
               />
