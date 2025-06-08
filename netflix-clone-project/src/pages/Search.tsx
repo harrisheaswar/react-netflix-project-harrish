@@ -41,7 +41,7 @@ const Search: FC = () => {
             .map((movie) => <Card item={movie} key={movie.id} />)
         ) : (
           <p style={{ fontSize: "40px", color: "white" }}>
-            No Movies Found For The Search {query}
+            No Movies Found For The Search : {query}
           </p>
         )}
       </div>

@@ -56,7 +56,7 @@ const ProfileDropdown: FC<ProfileDropdownProps> = ({
       </div>
       <div
         className="profileContent"
-        onClick={() => toast.success("Please login Netflix")}
+        onClick={() => toast.success("Please login to Netflix")}
       >
         <CircleHelp size={20} />
         <span>Help</span>
