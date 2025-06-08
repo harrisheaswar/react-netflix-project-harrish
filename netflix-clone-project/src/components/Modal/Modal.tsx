@@ -17,6 +17,7 @@ import SimilarMovieCard from "../SimilarMovieCard/SimilarMovieCard";
 import Spinner from "../CustomComponents/Spinner/Spinner";
 import { useMovieContext } from "@/context/MovieContext";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 interface ModalProps {
   isOpen: boolean;
@@ -100,6 +101,9 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, movieData }) => {
                     onClick={() => {
                       addToFavoriteList(movieDetails as Movie);
                       setAddedToFavorites(!addedToFavorites);
+                      !addedToFavorites
+                        ? toast.success(`Added to Favorites (MyList Page)`)
+                        : toast.success(`Removed from Favorites (MyList Page)`);
                     }}
                   >
                     {addedToFavorites ? (

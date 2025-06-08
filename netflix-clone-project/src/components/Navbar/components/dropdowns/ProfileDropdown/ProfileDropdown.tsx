@@ -3,7 +3,8 @@ import type { DropdownMenuProps } from "@/types/types";
 import { type FC, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import "./profileDropdownStyles.css";
-import { CircleHelp, UserCircle2 } from "lucide-react";
+import { CircleHelp, LogOut, UserCircle2 } from "lucide-react";
+import toast from "react-hot-toast";
 interface ProfileDropdownProps extends DropdownMenuProps {
   onMouseEnter: () => void;
   onMouseLeave: () => void;
@@ -46,13 +47,26 @@ const ProfileDropdown: FC<ProfileDropdownProps> = ({
         left: position.left,
       }}
     >
-      <div className="profileContent">
+      <div
+        className="profileContent"
+        onClick={() => toast.success("Please login to Netflix")}
+      >
         <UserCircle2 size={20} />
         <span>Account</span>
       </div>
-      <div className="profileContent">
+      <div
+        className="profileContent"
+        onClick={() => toast.success("Please login Netflix")}
+      >
         <CircleHelp size={20} />
         <span>Help</span>
+      </div>
+      <div
+        className="profileContent"
+        onClick={() => toast.success("Sign Out Successful")}
+      >
+        <LogOut size={20} />
+        <span>Sign Out</span>
       </div>
       <span className="dropdownArrow">&#9660;</span>
     </div>

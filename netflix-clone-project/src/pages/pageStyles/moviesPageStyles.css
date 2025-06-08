@@ -1,0 +1,38 @@
+.moviesPageContainer {
+  position: relative;
+  margin-left: 60px;
+  padding-top: 80px;
+  color: white;
+}
+
+.moviesContainer {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+@media screen and (max-width: 700px) {
+  .moviesPageContainer {
+    margin-left: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .moviesPageContainer {
+    margin-left: 40px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .moviesPageContainer {
+    margin-left: 20px;
+  }
+  .moviesContainer {
+    gap: 8px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .moviesContainer {
+    gap: 20px;
+  }
+}

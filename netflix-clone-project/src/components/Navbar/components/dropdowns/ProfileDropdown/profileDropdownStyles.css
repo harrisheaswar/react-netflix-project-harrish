@@ -12,7 +12,7 @@
 .profileDropdownContainer.active {
   opacity: 1;
   width: 150px;
-  height: 200px;
+  height: 100px;
   background-color: black;
   border: 1px solid hsla(0, 0%, 100%, 0.15);
   position: absolute;
@@ -41,6 +41,7 @@
   color: white;
   font-size: 12px;
   opacity: 0;
+  cursor: pointer;
 }
 
 .profileDropdownContainer.active .dropdownArrow {

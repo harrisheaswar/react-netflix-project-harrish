@@ -12,6 +12,7 @@ import PopUpCard from "./components/PopUpCard/PopUpCard";
 import { UtilsProvider } from "./context/UtilsContext";
 import Modal from "./components/Modal/Modal";
 import Movies from "./pages/Movies";
+import { Toaster } from "react-hot-toast";
 const App: FC = () => {
   return (
     <MovieProvider>
@@ -36,6 +37,12 @@ const MainContent: FC = () => {
   };
   return (
     <>
+      <Toaster
+        position="top-right"
+        containerStyle={{
+          zIndex: 100000,
+        }}
+      />
       <Navbar />
       <PopUpCard
         isHovered={cardState.isHovered}

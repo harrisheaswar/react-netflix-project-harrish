@@ -18,6 +18,7 @@ import { useMediaQuery } from "react-responsive";
 import { useUtilsContext } from "@/context/UtilsContext";
 import { Link } from "react-router";
 import { useMovieContext } from "@/context/MovieContext";
+import toast from "react-hot-toast";
 interface PopUpCardProps {
   isHovered: boolean;
   x: number;
@@ -79,7 +80,7 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
       setAddedToFavorites(
         list.some((item: Movie) => item && item.id === cardState.item.id)
       );
-      const fetchTrailer = async () => {
+      const fetchDetails = async () => {
         const trailerRes = await tmdbApi.getMovieTrailer(cardState.item?.id);
         if (trailerRes.error) {
           setTrailerUrl("");
@@ -87,7 +88,7 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
           setTrailerUrl(trailerRes.data.results[0].key);
         }
       };
-      fetchTrailer();
+      fetchDetails();
     }
   }, [cardState]);
   const styles = {
@@ -141,26 +142,8 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
         <div
           style={{ height: "230px", position: "relative", overflow: "hidden" }}
         >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              top: 150,
-              position: "relative",
-              padding: "0px 20px",
-              zIndex: 10000,
-            }}
-          >
-            <p
-              style={{
-                position: "relative",
-                textOverflow: "ellipsis",
-                fontWeight: 500,
-                fontSize: isSmallScreen ? "20px" : "30px",
-                width: "100%",
-              }}
-            >
+          <div className="popupVideoContainer">
+            <p className={`popupTitle ${isSmallScreen ? "small" : ""}`}>
               {title.length > 15 ? title.slice(0, 15) + "..." : title}
             </p>
             <button
@@ -170,17 +153,7 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
               {muted ? <VolumeOff size={20} /> : <Volume2 size={20} />}
             </button>
           </div>
-          <div
-            style={{
-              width: "100%",
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              backgroundColor: "gray",
-              objectFit: "cover",
-            }}
-          >
+          <div className="popupVideo">
             {(trailerUrl && showTrailer) || (isSmallScreen && trailerUrl) ? (
               <VideoPlayer pip={true} isMuted={muted} videoId={trailerUrl} />
             ) : imgUrl ? (
@@ -193,14 +166,7 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
             )}
           </div>
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            padding: "0px 20px",
-            marginTop: "5px",
-          }}
-        >
+        <div className="popupPlayContainer">
           <div style={{ display: "flex", gap: "10px" }}>
             <Link
               to={`/watch/${trailerUrl}`}
@@ -213,6 +179,9 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
               onClick={() => {
                 addToFavoriteList(faveData as Movie);
                 setAddedToFavorites((prev) => !prev);
+                !addedToFavorites
+                  ? toast.success(`Added to Favorites (MyList Page)`)
+                  : toast.success(`Removed from Favorites (MyList Page)`);
               }}
             >
               {addedToFavorites ? <Check size={25} /> : <Plus size={25} />}
@@ -240,16 +209,7 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
             <ChevronDown size={25} />
           </button>
         </div>
-        <div
-          style={{
-            display: "flex",
-            gap: "10px",
-            padding: "0px 20px",
-            fontSize: "13px",
-            fontWeight: 500,
-            alignItems: "center",
-          }}
-        >
+        <div className="popupDetails">
           <span style={{ color: "green", fontWeight: 700 }}>70% Match</span>
           <span style={{ border: "1px solid gray", padding: "1px 2px" }}>
             UA/16+
@@ -259,16 +219,7 @@ const PopUpCard: FC<PopUpCardProps> = ({ isHovered, x, y }) => {
             HD
           </span>
         </div>
-        <div
-          style={{
-            fontSize: "14px",
-            fontWeight: 500,
-            padding: "0px 20px",
-            paddingBottom: "20px",
-          }}
-        >
-          Witty •Heartfelt •Drama
-        </div>
+        <div className="popupGenre">Witty •Heartfelt •Drama</div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import axios, { type AxiosRequestConfig } from "axios";
 import type { Genre, Movie, MovieDetails, Trailer } from "./types/types";
+import toast from "react-hot-toast";
 const BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -30,7 +31,9 @@ const get = async <T>(
   } catch (error) {
     const status = error?.response?.data;
     const details = error?.reponse?.data;
-
+    toast.error("Something went wrong, please try after sometime", {
+      id: "toast",
+    });
     return {
       error: {
         message: `Failed to get the data from ${url}`,
