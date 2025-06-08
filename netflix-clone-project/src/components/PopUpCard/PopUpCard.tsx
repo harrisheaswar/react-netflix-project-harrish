@@ -16,7 +16,7 @@ import { useCardContext } from "@/context/CardContext";
 import type { Movie, MovieDetails } from "@/types/types";
 import { useMediaQuery } from "react-responsive";
 import { useUtilsContext } from "@/context/UtilsContext";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { useMovieContext } from "@/context/MovieContext";
 import toast from "react-hot-toast";
 interface PopUpCardProps {
